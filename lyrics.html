@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lyrics That Remind Me of You 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  background:#fff6ec;
+  font-family:'Patrick Hand', cursive;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* PAPER TEXTURE */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  opacity:0.22;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* TITLE */
+.heading{
+  text-align:center;
+  margin-top:60px;
+  font-size:36px;
+  position:relative;
+  z-index:2;
+}
+
+.sub{
+  text-align:center;
+  margin-top:10px;
+  font-size:28px;
+  color:#ff4d6d;
+  position:relative;
+  z-index:2;
+}
+
+/* DOODLES */
+.doodles{
+  position:absolute;
+  inset:0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Ctext x='20' y='60' font-size='32'%3E★%3C/text%3E%3Ctext x='200' y='220' font-size='28'%3E♡%3C/text%3E%3C/svg%3E");
+  opacity:0.12;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* GRID */
+.lyrics-wrapper{
+  max-width:1200px;
+  margin:60px auto 120px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+  gap:40px;
+  padding:0 30px;
+  position:relative;
+  z-index:2;
+}
+
+/* CARD */
+.lyric-card{
+  background:white;
+  padding:14px;
+  box-shadow:0 18px 35px rgba(0,0,0,0.18);
+  border-radius:6px;
+  position:relative;
+  transition:transform 0.3s ease;
+}
+
+/* SUBTLE DESKTOP ROTATION */
+@media (min-width: 769px){
+  .lyric-card:nth-child(odd){ transform:rotate(-1.5deg); }
+  .lyric-card:nth-child(even){ transform:rotate(1.5deg); }
+}
+
+/* POLAROID TAPE */
+.lyric-card::before{
+  content:"";
+  position:absolute;
+  top:-12px;
+  left:50%;
+  transform:translateX(-50%);
+  width:90px;
+  height:24px;
+  background:rgba(255,255,255,0.7);
+  border:1px dashed #ddd;
+  box-shadow:0 3px 6px rgba(0,0,0,0.15);
+}
+
+/* IMAGE */
+.lyric-card img{
+  width:100%;
+  height:auto;
+  border-radius:4px;
+  display:block;
+}
+
+/* HOVER */
+.lyric-card:hover{
+  transform:scale(1.05);
+  z-index:5;
+}
+
+/* NEXT BUTTON */
+.next-btn {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  background: #ff4d6d;
+  color: white;
+  text-decoration: none;
+  padding: 1em 2em;
+  font-size: 1.2em;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  z-index:10;
+}
+
+.next-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+}
+
+/* MOBILE */
+@media (max-width:768px){
+  .heading{ font-size:28px; margin-top:40px; }
+  .sub{ font-size:22px; }
+
+  .lyrics-wrapper{
+    gap:25px;
+    padding:0 20px;
+  }
+
+  .next-btn{
+    padding:0.7em 1.4em;
+    font-size:1em;
+    bottom:3%;
+    right:3%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="doodles"></div>
+
+<div class="heading">Lyrics that remind me of you</div>
+<div class="sub">every word feels like us ❤️</div>
+
+<div class="lyrics-wrapper">
+  <div class="lyric-card"><img src="images/1.jpg"></div>
+  <div class="lyric-card"><img src="images/2.jpg"></div>
+  <div class="lyric-card"><img src="images/3.jpg"></div>
+  <div class="lyric-card"><img src="images/4.jpg"></div>
+  <div class="lyric-card"><img src="images/5.jpg"></div>
+  <div class="lyric-card"><img src="images/6.jpg"></div>
+  <div class="lyric-card"><img src="images/7.jpg"></div>
+  <div class="lyric-card"><img src="images/8.jpg"></div>
+  <div class="lyric-card"><img src="images/9.jpg"></div>
+  <div class="lyric-card"><img src="images/10.jpg"></div>
+  <div class="lyric-card"><img src="images/11.jpg"></div>
+  <div class="lyric-card"><img src="images/12.jpg"></div>
+</div>
+
+<a href="letter.html" class="next-btn">Next ➡️</a>
+
+</body>
+</html>
