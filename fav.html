@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>My Favourite Person 💗</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 
 <style>
@@ -10,51 +11,154 @@ body{
   margin:0;
   background:#fff6ec;
   font-family:'Patrick Hand', cursive;
-  height:100vh;
   overflow-x:hidden;
-  overflow-y:auto; /* allow scroll on mobile */
+  position:relative;
 }
 
-/* HEADINGS */
-.heading{
+/* PAPER TEXTURE */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  opacity:0.22;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* DOODLES */
+.doodles{
   position:absolute;
-  top:60px;
-  left:80px;
-  font-size:34px;
+  inset:0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Ctext x='40' y='60' font-size='24'%3E♡%3C/text%3E%3Ctext x='210' y='240' font-size='22'%3E★%3C/text%3E%3C/svg%3E");
+  opacity:0.1;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  padding:60px 80px 30px;
+  position:relative;
+  z-index:2;
+}
+
+/* TITLE */
+.heading{
+  font-size:30px;
 }
 
 .sub{
-  position:absolute;
-  top:110px;
-  left:80px;
-  font-size:36px;
+  font-size:38px;
   color:#ff4d6d;
+  margin-top:8px;
+  margin-left:60px; /* emotional centering */
 }
 
-/* DATE */
-.date{
-  position:absolute;
-  top:60px;
-  right:120px;
+/* CALENDAR NOTE */
+.calendar{
   background:white;
-  border:2px dashed #dbeafe;
-  padding:10px 16px;
+  padding:12px 14px;
+  border:1.5px dashed #dbeafe;
+  border-radius:8px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.12);
+  width:170px;
+  transform:rotate(-2deg);
+}
+
+/* MONTH */
+.calendar .month{
   text-align:center;
-}
-
-.date .month{font-size:16px;}
-.date .day{
-  font-size:28px;
+  font-size:18px;
+  margin-bottom:8px;
   color:#ff4d6d;
 }
 
-/* SCRAPBOOK CARD */
-.card{
+/* DAYS */
+.days{
+  display:grid;
+  grid-template-columns:repeat(7, 1fr);
+  gap:4px;
+  font-size:13px;
+  text-align:center;
+  color:#555;
+}
+
+.day{
+  opacity:0.5;
+}
+
+/* HEART DAY */
+.day.heart{
+  opacity:1;
+  color:#ff4d6d;
+  font-size:15px;
+  position:relative;
+}
+
+.day.heart::after{
+  content:"♡";
   position:absolute;
-  width:260px;
+  top:-6px;
+  right:-6px;
+  font-size:14px;
+  opacity:0.6;
+}
+
+/* CARDS */
+.cards-wrapper{
+  max-width:980px;
+  margin:20px auto 120px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  gap:42px;
+  padding:0 40px;
+  position:relative;
+  z-index:2;
+}
+
+.card{
   background:white;
-  padding:10px;
-  box-shadow:0 15px 30px rgba(0,0,0,0.18);
+  padding:12px;
+  box-shadow:0 16px 32px rgba(0,0,0,0.18);
+  border-radius:6px;
+  position:relative;
+  transition:transform 0.3s ease;
+}
+
+/* NATURAL TILT */
+.card:nth-child(1){ transform:rotate(-2deg); }
+.card:nth-child(2){ transform:rotate(1.5deg); }
+.card:nth-child(3){ transform:rotate(-1deg); }
+
+/* TAPE */
+.card::before{
+  content:"";
+  position:absolute;
+  top:-12px;
+  left:50%;
+  transform:translateX(-50%) rotate(-2deg);
+  width:80px;
+  height:22px;
+  background:rgba(255,255,255,0.75);
+  border:1px dashed #ddd;
+  box-shadow:0 3px 6px rgba(0,0,0,0.15);
+}
+
+/* STAMP */
+.card::after{
+  content:"♡";
+  position:absolute;
+  top:-34px;
+  left:50%;
+  transform:translateX(-50%) rotate(-10deg);
+  font-size:22px;
+  color:#ff4d6d;
+  opacity:0.6;
 }
 
 /* IMAGE */
@@ -72,115 +176,53 @@ body{
   text-align:center;
 }
 
-/* INDIVIDUAL CARDS */
-.card.one{
-  top:260px;
-  left:140px;
-  transform:rotate(-6deg);
-  border:3px solid #cfe3ff;
-}
-
-.card.two{
-  top:260px;
-  left:430px;
-  transform:rotate(2deg);
-  border:3px solid #ffd6e6;
-}
-
-.card.three{
-  top:260px;
-  left:720px;
-  transform:rotate(-3deg);
-  border:3px solid #ff4d6d;
-}
-
 /* HOVER */
 .card:hover{
   transform:rotate(0deg) scale(1.05);
+  z-index:5;
+}
+
+/* NEXT */
+.next-btn{
+  position:fixed;
+  bottom:5%;
+  right:5%;
+  background:#ff4d6d;
+  color:white;
+  text-decoration:none;
+  padding:1em 2em;
+  font-size:1.1em;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  transition:0.3s;
   z-index:10;
 }
 
-/* NEXT BUTTON */
-.next-btn {
-  position: absolute;
-  bottom: 5%;
-  right: 5%;
-  background: #ff4d6d;
-  color: white;
-  text-decoration: none;
-  padding: 1em 2em;
-  font-size: 1.2em;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
+.next-btn:hover{ transform:scale(1.08); }
 
-.next-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
-}
-
-/* MOBILE ADJUSTMENTS */
-@media (max-width: 1024px) {
-  .heading { left:40px; font-size:28px; top:40px; }
-  .sub { left:40px; font-size:30px; top:80px; }
-  .date { right:40px; top:40px; padding:8px 14px; }
-  
-  .card.one{ left:40px; top:200px; transform:rotate(-4deg); }
-  .card.two{ left:280px; top:220px; transform:rotate(1deg); }
-  .card.three{ left:520px; top:200px; transform:rotate(-2deg); }
-}
-
-@media (max-width: 768px) {
-  .heading { left:20px; font-size:24px; top:30px; }
-  .sub { left:20px; font-size:26px; top:70px; }
-  .date { right:20px; top:30px; padding:6px 10px; }
-  
-  /* CENTER CARDS ON MOBILE */
-  .card{
-    position:relative;
-    width:150px;
-    margin: 0 10px;
-  }
-
-  .card.one, .card.two, .card.three{
-    top:auto;
-    left:auto;
-    transform: rotate(0deg);
-  }
-
-  body{
-    display:flex;
+/* MOBILE */
+@media (max-width:768px){
+  .header{
     flex-direction:column;
-    align-items:center;
+    gap:20px;
+    padding:40px 20px 20px;
   }
 
-  .cards-wrapper{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    margin-top:170px;
-  }
-}
+  .sub{ margin-left:0; }
 
-@media (max-width: 480px) {
-  .heading { left:15px; font-size:20px; top:20px; }
-  .sub { left:15px; font-size:22px; top:60px; }
-  .date { right:15px; top:20px; padding:4px 8px; }
-
-  .card{
-    width:130px;
+  .calendar{
+    width:100%;
+    max-width:220px;
   }
 
-  .card img{ height:120px; }
-  .card p{ font-size:14px; }
+  .cards-wrapper{ padding:0 20px; }
+  .card img{ height:150px; }
 
-  .next-btn {
-    padding: 0.6em 1.2em;
-    font-size: 0.9em;
-    bottom: 3%;
-    right: 3%;
+  .next-btn{
+    font-size:1em;
+    padding:0.7em 1.4em;
+    bottom:3%;
+    right:3%;
   }
 }
 </style>
@@ -188,34 +230,44 @@ body{
 
 <body>
 
-<div class="heading">Hai, this is for you</div>
-<div class="sub">my favourite person ❤️</div>
+<div class="doodles"></div>
 
-<div class="date">
-  <div class="month">January</div>
-  <div class="day">31 ✨</div>
+<div class="header">
+  <div>
+    <div class="heading">this is for you</div>
+    <div class="sub">my favourite person ❤️</div>
+  </div>
+
+  <div class="calendar">
+    <div class="month">January</div>
+    <div class="days">
+      <div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div>
+      <div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div>
+      <div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div>
+      <div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div>
+      <div class="day">29</div><div class="day">30</div><div class="day heart">31</div>
+    </div>
+  </div>
 </div>
 
-<!-- CENTERED CARDS ON MOBILE -->
 <div class="cards-wrapper">
-  <div class="card one">
+  <div class="card">
     <img src="images/photo-right.jpg">
     <p>my safest place.</p>
   </div>
 
-  <div class="card two">
+  <div class="card">
     <img src="images/photo-middle.jpg">
     <p>still the cutest.</p>
   </div>
 
-  <div class="card three">
+  <div class="card">
     <img src="images/photo-left.jpg">
     <p>us, always.</p>
   </div>
 </div>
 
-<!-- NEXT BUTTON -->
-<a href="letter.html" class="next-btn">Next ➡️</a>
+<a href="lyrics.html" class="next-btn">Next ➡️</a>
 
 </body>
 </html>
