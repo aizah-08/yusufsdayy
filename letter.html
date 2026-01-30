@@ -68,11 +68,6 @@ body{
   color:#f48fb1;  /* same pink color */
 }
 
-/* other emojis lighter shades */
-.heart .neutral{
-  color:#ffb6c1; /* lighter pink for distraction */
-}
-
 @keyframes fall{
   to{top:100%;}
 }
@@ -204,10 +199,8 @@ body{
 <!-- GAME -->
 <div class="game" id="game">
   <div class="instruction">
-    💌 Challenge time babyy!!<br>
-    💋 = +1 | 💣 = -1<br>
-    Other emojis = 0<br>
-    Collect enough points to unlock my letter 💌
+    💌 Tap 💋 to score +1, any other emoji = -1<br>
+    Collect enough points to unlock my letter!
   </div>
   <div class="timer">Time: <span id="time"></span>s</div>
   <div class="score">Score: <span id="score">0</span>/<span id="targetScore"></span></div>
@@ -277,12 +270,9 @@ function spawnHeart(){
   if(rand > 0.6){ 
     h.innerHTML = '<div class="hitbox good">💋</div>'; 
     h.dataset.good = "true";
-  } else if(rand > 0.3){ 
-    h.innerHTML = '<div class="hitbox bad">💣</div>'; 
-    h.dataset.good = "false";
   } else { 
-    h.innerHTML = `<div class="hitbox neutral">${emojis[Math.floor(Math.random()*emojis.length)]}</div>`; 
-    h.dataset.good = "none";
+    h.innerHTML = `<div class="hitbox bad">${emojis[Math.floor(Math.random()*emojis.length)]}</div>`; 
+    h.dataset.good = "false"; // all other emojis now -1
   }
 
   h.style.left = Math.random()*85 + "%";
@@ -306,7 +296,7 @@ function spawnHeart(){
   function handleClick(e){
     e.preventDefault();
     if(h.dataset.good === "true") score++;
-    else if(h.dataset.good === "false") score--;
+    else score--; // all non-💋 now -1
     if(score < 0) score = 0;
     document.getElementById("score").innerText = score;
     h.remove();
@@ -349,7 +339,7 @@ function restartGame(){
 
 // Confetti for 3s only
 function confetti(){
-  const confettiCount = 40;
+  const confettiCount = 30;
   for(let i=0;i<confettiCount;i++){
     const c = document.createElement("div");
     c.className = "confetti";
@@ -370,4 +360,5 @@ document.getElementById("env").addEventListener("click", ()=>{
 
 </body>
 </html>
+
 
